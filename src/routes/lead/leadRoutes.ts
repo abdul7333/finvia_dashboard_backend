@@ -9,7 +9,7 @@ import { isAuth } from "../../middlewares/auth";
 
 const router = Router();
 
-router.post("/createLead", isAuth, createLead);
+router.post("/createLead", createLead);
 router.get("/getLead/:id", isAuth, getLeadById);
 router.post("/getallLeads", isAuth, getAllLeads);
 router.patch("/updateLead/:id", isAuth, updateLead);
