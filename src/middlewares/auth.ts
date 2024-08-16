@@ -9,7 +9,7 @@ export const isAuth = async (
 ): Promise<void> => {
   try {
     const privateKey = JWT_TOKEN;
-    const token = req.cookies["next-token"];
+    const token = req.cookies["token"];
     if (!token) {
       res.status(401).json({
         success: false,

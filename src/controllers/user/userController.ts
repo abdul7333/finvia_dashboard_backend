@@ -65,7 +65,7 @@ export const userLogin = async (req: Request, res: Response): Promise<void> => {
       JWT_TOKEN!,
       { expiresIn: "1d" }
     );
-    res.cookie("next-token", token, {
+    res.cookie("token", token, {
       httpOnly: true,
       secure: true,
       sameSite: "none",
