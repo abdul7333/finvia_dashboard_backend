@@ -25,6 +25,7 @@ app.use(
       "http://localhost:3001",
       "http://localhost:3002",
       "https://finvia.vercel.app",
+      "https://finvia-dashboard2.onrender.com",
     ],
   })
 );
