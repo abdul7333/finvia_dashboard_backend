@@ -1,0 +1,10 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const AnnualComplaintcontroller_1 = require("../../controllers/AnnualComplaint/AnnualComplaintcontroller");
+const auth_1 = require("../../middlewares/auth");
+const router = (0, express_1.Router)();
+router.post("/createAnnualComplaint", auth_1.isAuth, AnnualComplaintcontroller_1.createAnnualComplaint);
+router.post("/getAllAnnualComplaint", auth_1.isAuth, AnnualComplaintcontroller_1.getAllAnnualComplaint);
+router.patch("/updateAnnualComplaints/:id", auth_1.isAuth, AnnualComplaintcontroller_1.updateAnnualComplaints);
+exports.default = router;

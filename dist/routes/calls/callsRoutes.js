@@ -1,0 +1,13 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const callsController_1 = require("../../controllers/calls/callsController");
+const auth_1 = require("../../middlewares/auth");
+const router = (0, express_1.Router)();
+router.post("/createCalls", auth_1.isAuth, callsController_1.createCalls);
+router.post("/getAllCalls", auth_1.isAuth, callsController_1.getAllCalls);
+router.post("/getAllCallsBar", callsController_1.getAllCallsBar);
+router.get("/getAllCallsSummary", callsController_1.getAllCallsSummary);
+router.post("/getAllCallsWebsite", callsController_1.getAllCallsWebsite);
+router.patch("/updateCalls/:id", auth_1.isAuth, callsController_1.updateCalls);
+exports.default = router;

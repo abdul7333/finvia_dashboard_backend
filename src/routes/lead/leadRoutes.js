@@ -1,0 +1,11 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const leadController_1 = require("../../controllers/lead/leadController");
+const auth_1 = require("../../middlewares/auth");
+const router = (0, express_1.Router)();
+router.post("/createLead", auth_1.isAuth, leadController_1.createLead);
+router.get("/getLead/:id", auth_1.isAuth, leadController_1.getLeadById);
+router.post("/getallLeads", auth_1.isAuth, leadController_1.getAllLeads);
+router.patch("/updateLead/:id", auth_1.isAuth, leadController_1.updateLead);
+exports.default = router;
