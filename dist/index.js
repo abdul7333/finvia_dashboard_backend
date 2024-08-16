@@ -34,7 +34,7 @@ app.use((0, cors_1.default)({
         "http://localhost:3000",
         "http://localhost:3001",
         "http://localhost:3002",
-        "https://finvia.vercel.app/",
+        "https://finvia.vercel.app",
     ],
 }));
 app.get("/", (req, res) => __awaiter(void 0, void 0, void 0, function* () {

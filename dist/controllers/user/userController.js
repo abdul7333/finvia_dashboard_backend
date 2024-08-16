@@ -65,7 +65,7 @@ const userLogin = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
             email: user.email,
             role: user.role,
         }, env_variables_1.JWT_TOKEN, { expiresIn: "1d" });
-        res.cookie("next-token", token, {
+        res.cookie("token", token, {
             httpOnly: true,
             secure: true,
             sameSite: "none",

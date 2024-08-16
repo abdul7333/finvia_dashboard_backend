@@ -18,7 +18,7 @@ const env_variables_1 = require("../env-variables");
 const isAuth = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const privateKey = env_variables_1.JWT_TOKEN;
-        const token = req.cookies["next-token"];
+        const token = req.cookies["token"];
         if (!token) {
             res.status(401).json({
                 success: false,
