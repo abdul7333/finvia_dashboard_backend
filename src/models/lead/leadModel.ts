@@ -10,11 +10,11 @@ export interface ILead extends Document {
 
 const leadSchema: Schema = new Schema<ILead>(
   {
-    name: { type: String, required: true },
+    name: { type: String},
     phone: { type: String, required: true },
     email: { type: String, required: true },
-    language: { type: String, required: true },
-    message: { type: String, required: true },
+    language: { type: String},
+    message: { type: String},
   },
   {
     timestamps: true,

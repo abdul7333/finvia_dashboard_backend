@@ -12,7 +12,7 @@ export const createLead = async (
       ...req.body,
     });
     await lead.save();
-    res.status(201).json(lead);
+    res.status(200).json(lead);
   } catch (error) {
     if (error instanceof Error) {
       res.status(400).json({ error: error.message });
