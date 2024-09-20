@@ -14,7 +14,7 @@ const router = Router();
 router.post("/createCalls", isAuth ,createCalls);
 router.post("/getAllCalls",isAuth, getAllCalls);
 router.post("/getAllCallsBar", getAllCallsBar);
-router.get("/getAllCallsSummary", getAllCallsSummary);
+router.get("/getAllCallsSummary/:type", getAllCallsSummary);
 router.post("/getAllCallsWebsite", getAllCallsWebsite);
 router.patch("/updateCalls/:id",isAuth, updateCalls);
 

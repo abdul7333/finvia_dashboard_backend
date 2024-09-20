@@ -168,9 +168,12 @@ export const getAllCallsBar = async (
   res: Response
 ): Promise<Response> => {
   try {
-    const { filter } = req.body;
+    const { filter, type } = req.body;
     const filterNumber = parseInt(filter)
     const pipeline: Array<any> = [
+      {
+        $match: { "type": type }
+      },
       {
         $sort: { createdAt: -1 }
       },
@@ -249,13 +252,13 @@ export const getAllCallsBar = async (
           totalValue: { $sum: "$PandL" }
         }
       },
-      {
-        $project: {
-          _id: 0,
-          date: "$_id",
-          totalValue: 1
-        }
-      },{
+        {
+          $project: {
+            _id: 0,
+            date: "$_id",
+            totalValue: 1
+          }
+        }, {
         $sort: { date: 1 }
       });
     }
@@ -273,8 +276,12 @@ export const getAllCallsSummary = async (
   req: Request,
   res: Response
 ): Promise<Response> => {
+  const {type} = req.params
   try {
     const pipeline: Array<any> = [
+      {
+        $match: { "type": type }
+      },
       {
         $sort: { createdAt: -1 }
       },
@@ -299,7 +306,7 @@ export const getAllCallsWebsite = async (
   req: Request,
   res: Response
 ): Promise<Response> => {
-  const { pageSize, page, range } = req.body;
+  const { pageSize, page, range, type } = req.body;
   try {
     const pageNumber = +page;
 
@@ -308,8 +315,8 @@ export const getAllCallsWebsite = async (
 
     const pipeLine: Array<any> = []
 
-    if(range.startDate !=""){
-     pipeLine.push({
+    if (range.startDate != "") {
+      pipeLine.push({
         $match: {
           $expr: {
             $and: [
@@ -321,28 +328,32 @@ export const getAllCallsWebsite = async (
       })
     }
 
-    pipeLine.push({
-      $project: {
-        stock: 1,
-        action: 1,
-        type: 1,
-        quantity: 1,
-        entry: 1,
-        target1: 1,
-        target2: 1,
-        stopLoss: 1,
-        booked: 1,
-        roi: 1,
-        PandL: 1,
-        status: 1,
+    pipeLine.push(
+      {
+        $match: { "type": type }
       },
-    },
-    {
-      $skip: +(pageNumber - 1) * limitNumber,
-    },
-    {
-      $limit: limitNumber,
-    })
+      {
+        $project: {
+          stock: 1,
+          action: 1,
+          type: 1,
+          quantity: 1,
+          entry: 1,
+          target1: 1,
+          target2: 1,
+          stopLoss: 1,
+          booked: 1,
+          roi: 1,
+          PandL: 1,
+          status: 1,
+        },
+      },
+      {
+        $skip: +(pageNumber - 1) * limitNumber,
+      },
+      {
+        $limit: limitNumber,
+      })
 
     const CallsData = await Calls.aggregate(pipeLine);
     const totalCalls = await Calls.countDocuments();
